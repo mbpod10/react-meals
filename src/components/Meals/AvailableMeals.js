@@ -31,6 +31,10 @@ const DUMMY_MEALS = [
 
 const AvailableMeals = () => {
 
+  const raiseTotal = (units) => {
+    console.log(units)
+  }
+
   const mealsList = DUMMY_MEALS.map((meal, index) => {
     return (
       <MealItem
@@ -38,6 +42,7 @@ const AvailableMeals = () => {
         name={meal.name}
         description={meal.description}
         price={meal.price}
+        raiseTotal={raiseTotal}
       />
     )
   })
