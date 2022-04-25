@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import classes from "./MealItemForm.module.css"
+import Input from '../../UI/Input';
 
 const MealItemForm = (props) => {
   const rx_live = /^[+-]?\d*(?:[.,]\d*)?$/;
@@ -30,11 +31,15 @@ const MealItemForm = (props) => {
   return (
     <>
       <form className={classes.form} onSubmit={onSubmit}>
-        <div>
-          <label htmlFor="order">Amount</label>
-          <input type="number" id="order" name="order" value={amount}
-            min="0" max="100" onChange={handleChange} />
-        </div>
+        <Input label="Amount"
+          input={{
+            id: 'amount_' + props.id,
+            type: 'number',
+            max: '5',
+            min: '0',
+            step: '1',
+            defaultValue: '0'
+          }} />
         <button onClick={handleButtonChange}>
           Add+
         </button>

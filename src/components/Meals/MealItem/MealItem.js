@@ -4,10 +4,13 @@ import MealItemForm from './MealItemForm'
 
 const MealItem = (props) => {
   const price = `$${props.price.toFixed(2)}`
-  const [amount, setTotalBill] = useState(0)
+  // const [amount, setAmount] = useState(0)
+  const [total, setTotal] = useState(0)
+  const [mealList, setMealList] = useState({})
 
   const raiseTotal = (amount) => {
-    setTotalBill(parseInt(amount, 10))
+    // setAmount(parseInt(amount, 10))
+    setTotal(props.price * amount)
     props.raiseTotal(parseInt(amount, 10))
   }
 
@@ -27,10 +30,9 @@ const MealItem = (props) => {
         <MealItemForm
           key={props.id}
           price={props.price}
-          raiseTotal={raiseTotal} />
+          raiseTotal={raiseTotal}
+          id={props.id} />
       </div>
-
-      {`$${(props.price * amount).toFixed(2)}`}
     </li>
   )
 }

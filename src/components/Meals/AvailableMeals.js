@@ -1,3 +1,5 @@
+import React, { useReducer, useState } from 'react';
+
 import Card from '../UI/Card';
 import classes from './AvailableMeals.module.css'
 import MealItem from './MealItem/MealItem';
@@ -29,15 +31,29 @@ const DUMMY_MEALS = [
   },
 ];
 
+const reducer = (total, action) => {
+  if (action.type === 'change') {
+    console.log(action)
+    return total = action.payload
+  }
+}
+
 const AvailableMeals = () => {
 
+  // const [totalUnits, setTotalUnits] = useState(0)
+
+  const [total, dispatch] = useReducer(reducer, 0)
+
   const raiseTotal = (units) => {
-    console.log(units)
+    // console.log(units)
+    dispatch({ type: 'change', payload: units })
+    console.log(total)
   }
 
   const mealsList = DUMMY_MEALS.map((meal, index) => {
     return (
       <MealItem
+        id={meal.id}
         key={meal.id}
         name={meal.name}
         description={meal.description}
