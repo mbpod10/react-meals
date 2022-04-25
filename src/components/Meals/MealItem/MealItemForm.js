@@ -1,9 +1,12 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import classes from "./MealItemForm.module.css"
 import Input from '../../UI/Input';
+import CartContext from '../../../store/cart-context';
+
 
 const MealItemForm = (props) => {
   const rx_live = /^[+-]?\d*(?:[.,]\d*)?$/;
+  const cartCtx = useContext(CartContext)
 
   const [amount, setAmount] = useState(0)
 
