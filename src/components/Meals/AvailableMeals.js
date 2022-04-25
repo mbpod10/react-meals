@@ -31,24 +31,7 @@ const DUMMY_MEALS = [
   },
 ];
 
-const reducer = (total, action) => {
-  if (action.type === 'change') {
-    console.log(action)
-    return total = action.payload
-  }
-}
-
 const AvailableMeals = () => {
-
-  // const [totalUnits, setTotalUnits] = useState(0)
-
-  const [total, dispatch] = useReducer(reducer, 0)
-
-  const raiseTotal = (units) => {
-    // console.log(units)
-    dispatch({ type: 'change', payload: units })
-    console.log(total)
-  }
 
   const mealsList = DUMMY_MEALS.map((meal, index) => {
     return (
@@ -58,7 +41,6 @@ const AvailableMeals = () => {
         name={meal.name}
         description={meal.description}
         price={meal.price}
-        raiseTotal={raiseTotal}
       />
     )
   })

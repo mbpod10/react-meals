@@ -1,17 +1,20 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import classes from "./MealItem.module.css"
 import MealItemForm from './MealItemForm'
+import CartContext from '../../../store/cart-context'
 
 const MealItem = (props) => {
-  const price = `$${props.price.toFixed(2)}`
-  // const [amount, setAmount] = useState(0)
-  const [total, setTotal] = useState(0)
-  const [mealList, setMealList] = useState({})
+  const cardCtx = useContext(CartContext)
 
-  const raiseTotal = (amount) => {
-    // setAmount(parseInt(amount, 10))
-    setTotal(props.price * amount)
-    props.raiseTotal(parseInt(amount, 10))
+  const price = `$${props.price.toFixed(2)}`
+
+  const addToCartHandler = (amount) => {
+    cardCtx.addItem({
+      id: props.id,
+      name: props.name,
+      price: props.price,
+      amount: amount
+    })
   }
 
   return (
@@ -30,7 +33,7 @@ const MealItem = (props) => {
         <MealItemForm
           key={props.id}
           price={props.price}
-          raiseTotal={raiseTotal}
+          onAddToCart={addToCartHandler}
           id={props.id} />
       </div>
     </li>
